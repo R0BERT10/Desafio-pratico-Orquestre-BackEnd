@@ -1,4 +1,3 @@
-import { ResponseHTMLError } from "../../util/errorHandling";
 import User, { IUserEssential } from "../entities/User";
 
 export default interface IUserRepository {
