@@ -1,10 +1,10 @@
 {
   "name": "desafio-pratico-orquestre-backend",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "ts-node src/index.ts",
-    "dev": "ts-node-dev --transpile-only src/index.ts",
+    "start": "ts-node src/server.ts",
+    "dev": "ts-node-dev --transpile-only src/server.ts",
     "typeorm": "typeorm-ts-node-commonjs",
     "migration:run": "typeorm-ts-node-commonjs migration:run -d src/database/data-source.ts"
   },
