@@ -2,6 +2,7 @@ import "reflect-metadata";
 import "dotenv/config";
 import { DataSource } from "typeorm";
 import { CreateUserTable1723165293956 } from "./migration/1723165293956-CreateUserTable";
+import User from "../app/entities/User";
 
 export const AppDataSource = new DataSource({
   type: "postgres",
@@ -12,7 +13,7 @@ export const AppDataSource = new DataSource({
   database: process.env.POSTGRES_DATABASE,
   synchronize: true,
   logging: false,
-  entities: [],
+  entities: [ User ],
   migrations: [ CreateUserTable1723165293956 ],
   subscribers: [],
   ssl: true
