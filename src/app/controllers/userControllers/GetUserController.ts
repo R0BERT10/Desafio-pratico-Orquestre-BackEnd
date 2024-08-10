@@ -4,7 +4,8 @@ import IUserRepository from "../../repositories/IUsersRepository";
 export default class GetUserController {
     constructor( private userRepository : IUserRepository ){
     }
-    async handle(request: Request, response: Response) {
+    
+    handle = async (request: Request, response: Response) => {
         const { uid } = request.params
 
         const result = await this.userRepository.findByUid(uid)

@@ -6,8 +6,9 @@ import IUserRepository from "../../repositories/IUsersRepository";
 export default class CreateUserController {
     constructor( private userRepository : IUserRepository ){
     }
-    async handle(request: Request, response: Response) {
+    handle = async (request: Request, response: Response) => {
       const userEssential : IUserEssential = request.body
+      console.log(userEssential) 
       const userRepository = this.userRepository
       
       const result = await userRepository.createNewUser(userEssential);
