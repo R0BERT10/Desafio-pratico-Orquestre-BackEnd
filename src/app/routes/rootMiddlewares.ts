@@ -18,3 +18,11 @@ export const handleServerErrors = ( err:Error, req: Request, res: Response, next
       }
       return next()
 }
+
+export const extractColonFromUrlMiddleware = (req:Request, res:Response, next:NextFunction) => {
+    if (req.url.includes(':')) {
+        const parts = req.url.split(':');
+        req.url = parts[0] + "/internal" + parts[1];
+    }
+    return next();
+}

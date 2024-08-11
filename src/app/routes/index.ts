@@ -1,10 +1,11 @@
 import { Router } from "express";
-import userRouter from "./userRouter";
-import { handleServerErrors } from "./handleServerErrors";
+import { extractColonFromUrlMiddleware, handleServerErrors } from "./rootMiddlewares";
+import accountRouter from "./accountRouter";
 
 const routes = Router();
 
 routes.use(handleServerErrors)
-routes.use("/user", userRouter);
+routes.use(extractColonFromUrlMiddleware)
+routes.use("/account", accountRouter);
 
 export default routes
