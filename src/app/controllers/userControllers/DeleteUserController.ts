@@ -9,6 +9,16 @@ export default class DeleteUserController {
 
         const result = await this.userRepository.delete(uid)
 
-        return res.status(200).json(result)
+        if (result.isFailure){
+            const err = result.getError()
+            return res.status(err.httpCodeResponse).json({ ode:err.httpCodeResponse, message:err.messageResponse})
+        }
+
+        const isSuccessful = result.getValue()
+        if (isSuccessful){
+            return res.status(204)
+        } else {
+            return res.status(400).json({ message:"No records were deleted."})
+        }
     }
 }

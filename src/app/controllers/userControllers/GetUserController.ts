@@ -10,6 +10,12 @@ export default class GetUserController {
 
         const result = await this.userRepository.findByUid(uid)
 
-        return res.status(200).json(result)
+        if (result.isFailure){
+            const err = result.getError()
+            return res.status(err.httpCodeResponse).json({ ode:err.httpCodeResponse, message:err.messageResponse})
+        }
+
+        const user = result.getValue()
+        return res.status(200).json(user)
     }
 }

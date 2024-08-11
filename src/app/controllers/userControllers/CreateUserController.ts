@@ -13,8 +13,12 @@ export default class CreateUserController {
       
       const result = await userRepository.createNewUser(userEssential);
 
-      return res.json(result);
+      if (result.isFailure){
+        const err = result.getError()
+        return res.status(err.httpCodeResponse).json({ ode:err.httpCodeResponse, message:err.messageResponse})
+      }
+
+      const user = result.getValue()
+      return res.status(201).json(user);
     }
-  }
-  
-  
+}
