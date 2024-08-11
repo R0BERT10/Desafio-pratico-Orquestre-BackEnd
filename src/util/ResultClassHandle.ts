@@ -25,7 +25,7 @@ export class Result<T> {
     }
   
     public getValue () : T {
-      if (!this.isSuccess || !this._value) {
+      if (!this.isSuccess || this._value == undefined) {
         throw new Error(`Cant retrieve the value from a failed result.
             Error: ${this.error?.messageResponse}`)
       } 

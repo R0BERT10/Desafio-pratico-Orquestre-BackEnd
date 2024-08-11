@@ -1,8 +1,8 @@
-import { Result } from "../../util/resultClassHandle";
+import { Result } from "../../util/ResultClassHandle";
 import User, { IUserEssential } from "../entities/User";
 
 export default interface IUserRepository {
-    createNewUser(user : IUserEssential) : Promise<Result<User>>
+    createNewUser(user : User) : Promise<Result<User>>
     
     findByUid(uid : string) : Promise<Result<User>>
     findByUserName(user_name : string) : Promise<Result<User>>

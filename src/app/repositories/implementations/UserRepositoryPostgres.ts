@@ -1,5 +1,5 @@
 import { AppDataSource } from "../../../database/data-source";
-import { Result } from "../../../util/resultClassHandle";
+import { Result } from "../../../util/ResultClassHandle";
 import { ClientError } from "../../../util/ResultErrors";
 import User, { IUserEssential } from "../../entities/User";
 import IUserRepository from "../IUsersRepository";
@@ -8,13 +8,17 @@ export default class UserRepositoryPostgres implements IUserRepository {
     private repository = AppDataSource.getRepository(User)
     private authProvider = "EpeNsy3hJrgNwsQbGQv37YBzTK73"
     
-    async createNewUser(user: IUserEssential): Promise<Result<User>> {
+    async createNewUser(user: User): Promise<Result<User>> {
+        if (await this.repository.findOneBy({ uid:user.uid})){
+            return Result.fail(ClientError.CONFLICT("Uid already exists in the database",`UserPostgresRepository: createNewUser(${user})`))
+        }
+        if (await this.repository.findOneBy({ email:user.email })){
+            return Result.fail(ClientError.CONFLICT("Email already registered",`UserPostgresRepository: createNewUser(${user})`))
+        }
         if (await this.repository.findOneBy({ user:user.user })) {
-            return Result.fail(ClientError.NOT_FOUND(`UserPostgresRepository: createNewUser(${user})`))
+            return Result.fail(ClientError.CONFLICT("Username already exists",`UserPostgresRepository: createNewUser(${user})`))
         }
         const newUser = this.repository.create(user)
-        newUser.uid = this.authProvider
-        //throw new Error("Falta implementação do auth.")
         const result = await this.repository.save(newUser)
         return Result.ok(result)
     }
@@ -40,7 +44,9 @@ export default class UserRepositoryPostgres implements IUserRepository {
         if (!user){
             return Result.fail(ClientError.NOT_FOUND(`UserPostgresRepository: findByUserName(${uid})`))
         }
-        if (await this.repository.findOneBy( { user:userEssential.user })){
+
+        const userUserName = await this.repository.findOneBy( { user:userEssential.user })
+        if (userUserName && userUserName == user ){
             return Result.fail(ClientError.CONFLICT("Username already exists", `UserPostgresRepository: findByUserName(${userEssential.user})`))
         }
         
@@ -56,8 +62,7 @@ export default class UserRepositoryPostgres implements IUserRepository {
         if (!(await this.repository.findOneBy({ uid }))){
             return Result.fail(ClientError.NOT_FOUND((`UserPostgresRepository: delete(${uid})`)))
         }
-
-        const result = await this.repository.delete(uid)
+        const result = await this.repository.delete({uid})
         const boolResult = result.affected == null || (result.affected !== undefined && result.affected > 0)
         return Result.ok(boolResult)
     }
