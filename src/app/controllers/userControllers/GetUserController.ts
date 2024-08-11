@@ -5,11 +5,11 @@ export default class GetUserController {
     constructor( private userRepository : IUserRepository ){
     }
     
-    handle = async (request: Request, response: Response) => {
-        const { uid } = request.params
+    handle = async (req: Request, res: Response) => {
+        const { uid } = req.params
 
         const result = await this.userRepository.findByUid(uid)
 
-        return response.status(200).json(result)
+        return res.status(200).json(result)
     }
 }

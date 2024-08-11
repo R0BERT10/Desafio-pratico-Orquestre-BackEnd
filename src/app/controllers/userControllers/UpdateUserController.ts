@@ -4,12 +4,12 @@ import IUserRepository from "../../repositories/IUsersRepository";
 export default class UpdateUserController {
     constructor( private userRepository : IUserRepository ){
     }
-    handle = async (request: Request, response: Response) => {
-        const { uid } = request.params
-        const userEssential = request.body
+    handle = async (req: Request, res: Response) => {
+        const { uid } = req.params
+        const userEssential = req.body
 
         const result = await this.userRepository.updateUser(uid, userEssential)
 
-        return response.status(200).json(result)
+        return res.status(200).json(result)
     }
 }

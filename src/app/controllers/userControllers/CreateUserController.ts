@@ -6,14 +6,14 @@ import IUserRepository from "../../repositories/IUsersRepository";
 export default class CreateUserController {
     constructor( private userRepository : IUserRepository ){
     }
-    handle = async (request: Request, response: Response) => {
-      const userEssential : IUserEssential = request.body
+    handle = async (req: Request, res: Response) => {
+      const userEssential : IUserEssential = req.body
       console.log(userEssential) 
       const userRepository = this.userRepository
       
       const result = await userRepository.createNewUser(userEssential);
 
-      return response.json(result);
+      return res.json(result);
     }
   }
   
