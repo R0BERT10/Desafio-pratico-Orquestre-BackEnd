@@ -1,3 +1,4 @@
+import { FindOptionsWhere } from "../../util/@Type.FindOptionsWhere";
 import { Result } from "../../util/ResultClassHandle";
 import User, { IUserEssential } from "../entities/User";
 
@@ -6,6 +7,8 @@ export default interface IUserRepository {
     
     findByUid(uid : string) : Promise<Result<User>>
     findByUserName(user_name : string) : Promise<Result<User>>
+    findByEmail(email : string) : Promise<Result<User>>
+    findByUserAttributes(userAttributes : FindOptionsWhere<User>) : Promise<Result<User>>
 
     updateUser(uid : string, userEssential : IUserEssential) : Promise<Result<User>>
     

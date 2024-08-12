@@ -3,6 +3,7 @@ import User, { IUserEssential } from "../../entities/User";
 import CreateUserAccount from "../../Services/UserServices/CreateUserAccount";
 
 interface BodyRequest extends IUserEssential {
+  password:string
 }
 
 interface BodyResponse extends User {
