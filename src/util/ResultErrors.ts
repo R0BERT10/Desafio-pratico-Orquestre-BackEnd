@@ -30,6 +30,7 @@ export class ServerError implements ResultError {
     
     static readonly INTERNAL_ERROR = (origin:string) => {new ServerError("INTERNAL_ERROR", 500, "Internal Server Error", origin)}
     
+    static readonly generic = (message:string, origin:string) => {return new ServerError("genericError", 500, message, origin)}
     // private to disallow creating other instances of this type
     private constructor(
         private key: string,

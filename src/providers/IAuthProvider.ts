@@ -15,7 +15,8 @@ export type userAuth = {
 export default interface IAuthProvider {
     singUpAccount(props:propsLogin) : Promise<Result<userAuth>>
     singInAccount(props:propsLogin) : Promise<Result<userAuth>>
-    DeleteAccount(uid:string) : Promise<Result<boolean>>
-    verifyToken(idToken:string) : Promise<Result<boolean>>
+    deleteAccount(uid:string) : Promise<Result<boolean>>
+    verifyToken(idToken:string) : Promise<Result<string>>
     refreshToken(refreshToken:string) : Promise<Result<string>>
+    changePassword(idToken:string, newPassword:string) : Promise<Result<void>>
 }
