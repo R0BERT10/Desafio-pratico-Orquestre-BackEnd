@@ -25,5 +25,9 @@ export default class User implements IUserEssential {
 
     @CreateDateColumn({ name:"last_login_at", type:"timestamp", nullable:false })
     lastLoginAt!: Date
+
+    idToken : string = ""
+
+    refreshToken : string = ""
 }
 
