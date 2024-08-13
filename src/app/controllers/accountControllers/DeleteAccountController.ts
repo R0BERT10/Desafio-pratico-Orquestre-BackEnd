@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import DeleteUserAccount from "../../Services/UserServices/DeleteUserAccount";
+import DeleteUserAccount from "../../services/UserServices/DeleteUserAccount";
 
 interface BodyRequest {
     idToken:string

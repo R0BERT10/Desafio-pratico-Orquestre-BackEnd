@@ -1,4 +1,4 @@
-import { UserAccountServices } from "../../Services/UserServices";
+import { UserAccountServices } from "../../services/UserServices";
 import CreateAccountController from "./CreateAccountController";
 import DeleteAccountController from "./DeleteAccountController";
 import GetAccountController from "./GetAccountController";

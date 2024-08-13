@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import RefreshTokenAccount from "../../Services/UserServices/RefreshTokenAccount";
+import RefreshTokenAccount from "../../services/UserServices/RefreshTokenAccount";
 import { updatedToken } from "../../../providers/IAuthProvider";
 
 interface BodyRequest {

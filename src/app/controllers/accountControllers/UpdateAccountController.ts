@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import User, { IUserEssential } from "../../entities/User";
-import UpdateUserAccount from "../../Services/UserServices/UpdateUserAccount";
+import UpdateUserAccount from "../../services/UserServices/UpdateUserAccount";
 
 interface BodyRequest extends IUserEssential {
     newPassword:string,

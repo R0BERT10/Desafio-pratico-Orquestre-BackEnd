@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import User from "../../entities/User";
-import SignInUserAccount from "../../Services/UserServices/SignInUserAccount";
+import SignInUserAccount from "../../services/UserServices/SignInUserAccount";
 
 interface BodyRequest {
     email : string
