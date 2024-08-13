@@ -12,11 +12,17 @@ export type userAuth = {
     refreshToken:string
 }
 
+export type updatedToken = {
+    idToken: string,
+    expiresIn: string,
+    refreshToken: string
+}
+
 export default interface IAuthProvider {
     singUpAccount(props:propsLogin) : Promise<Result<userAuth>>
     singInAccount(props:propsLogin) : Promise<Result<userAuth>>
     deleteAccount(uid:string) : Promise<Result<boolean>>
     verifyToken(idToken:string) : Promise<Result<string>>
-    refreshToken(refreshToken:string) : Promise<Result<string>>
+    refreshToken(refreshToken:string) : Promise<Result<updatedToken>>
     changePassword(idToken:string, newPassword:string) : Promise<Result<void>>
 }

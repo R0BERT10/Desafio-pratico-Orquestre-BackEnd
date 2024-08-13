@@ -1,4 +1,4 @@
-import IAuthProvider, { propsLogin, userAuth } from "../IAuthProvider";
+import IAuthProvider, { propsLogin, updatedToken, userAuth } from "../IAuthProvider";
 import { Result } from "../../util/ResultClassHandle";
 import { firebase, firebaseLinks } from "./Firebase";
 import { options } from "../../util/CreateOptionsForFetch";
@@ -7,7 +7,7 @@ import { ClientError } from "../../util/ResultErrors";
 export default class AuthProviderFirebase implements IAuthProvider {
     private auth = firebase.auth()//getAuth()    
     async singUpAccount({email, password}: propsLogin): Promise<Result<userAuth>> {
-        const response = await (await fetch(firebaseLinks.signUp, options.POST({email, password})))
+        const response = await (await fetch(firebaseLinks.signUp, options.POST({email, password, returnSecureToken:true})))
         const responseJson = await response.json()
         if (response.ok){
             const { localId, idToken, refreshToken } = responseJson
@@ -47,8 +47,15 @@ export default class AuthProviderFirebase implements IAuthProvider {
         }
     }
 
-    refreshToken(refreshToken: string): Promise<Result<string>> {
-        throw new Error("Method not implemented.");
+    async refreshToken(refreshToken: string): Promise<Result<updatedToken>> {
+        const response = await (await fetch(firebaseLinks.refreshToken, options.POST({grant_type:"refresh_token", refresh_token:refreshToken})))
+        const responseJson = await response.json()
+        console.log(responseJson)
+        if (response.ok){
+            const { refresh_token, id_token, expires_in } = responseJson
+            return Result.ok<updatedToken>({ idToken:id_token, refreshToken:refresh_token, expiresIn:expires_in})
+        }
+        return Result.fail(ClientError.generic(`authError:${responseJson.error.message}`, `AuthProviderFirebase: refreshToken(${refreshToken})`))
     }
 
     async changePassword(idToken: string, newPassword: string): Promise<Result<void>> {
@@ -56,10 +63,8 @@ export default class AuthProviderFirebase implements IAuthProvider {
         const responseJson = await response.json()
         console.log(responseJson)
         if (response.ok){
-            const { localId, idToken, refreshToken } = responseJson
-            //return Result.ok<userAuth>({uid:localId, email, idToken, refreshToken})
+            return Result.ok()
         }
-        //return Result.fail(ClientError.generic(`authError:${responseJson.error.message}`, `AuthProviderFirebase: singInAccount({${email}, ${password}})`))
-        throw new Error("Method not implemented.");
+        return Result.fail(ClientError.generic(`authError:${responseJson.error.message}`, `AuthProviderFirebase: changePassword({${idToken}, ${newPassword}})`))
     }
 }
