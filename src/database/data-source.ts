@@ -6,9 +6,9 @@ import User from "../app/entities/User";
 import { CreateGenreTable1723557451769 } from "./migration/1723557451769-CreateGenreTable";
 import { CreateMovieTable1723557464411 } from "./migration/1723557464411-CreateMovieTable";
 import { CreateReviewTable1723558523401 } from "./migration/1723558523401-CreateReviewTable";
-import { Genre } from "../app/entities/Genre";
-import { Movie } from "../app/entities/Movie";
-import { Review } from "../app/entities/Review";
+import Genre from "../app/entities/Genre";
+import Movie from "../app/entities/Movie";
+import Review from "../app/entities/Review";
 
 export const AppDataSource = new DataSource({
   type: "postgres",

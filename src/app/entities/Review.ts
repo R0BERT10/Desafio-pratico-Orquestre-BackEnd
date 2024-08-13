@@ -1,9 +1,16 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn, JoinColumn } from 'typeorm';
-import { Movie } from './Movie';
+import Movie from './Movie';
 import User from './User';
 
+export interface IReviewEssential {
+    readonly user : User,
+    readonly movie : Movie,
+    readonly rating : string,
+    readonly comment : string
+}
+
 @Entity()
-export class Review {
+export default class Review {
     @PrimaryGeneratedColumn()
     review_id!: number;
 

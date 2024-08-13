@@ -1,8 +1,17 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
-import { Genre } from './Genre';
+import Genre from './Genre';
+
+export interface IMovieEssential {
+    readonly title : string,
+    readonly description : string,
+    readonly release_date : Date,
+    readonly genre : Genre,
+    readonly rating : number,
+    readonly duration : null
+}
 
 @Entity()
-export class Movie {
+export default class Movie {
     @PrimaryGeneratedColumn()
     id!: number;
 
