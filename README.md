@@ -70,7 +70,7 @@ __Resposta exemplo:__
 ```
 
 ***Login de Usuário:***  
-Autentica um usuário existente utilizando email e senha.
+Autentica um usuário existente utilizando email e senha.    
 __Rota:__ `/account:signInWithEmailAndPassword`  
 __Método:__ POST  
 __Requisição:__   
@@ -101,7 +101,7 @@ __Resposta exemplo:__
 ```
 
 ***Atualização de Perfil:***  
-Atualiza as informações de um usuário.
+Atualiza as informações de um usuário.    
 __Rota:__ `/account:signUp`  
 __Método:__ POST  
 __Requisição:__   
@@ -133,7 +133,7 @@ __Resposta exemplo:__
 ```
 
 ***Deleção de Perfil:***  
-Remove o usuário do banco de dados.
+Remove o usuário do banco de dados.      
 __Rota:__ `/account:deleteProfile`  
 __Método:__ POST  
 __Requisição:__   
@@ -169,12 +169,12 @@ __Resposta exemplo:__
 {
   "idToken": "new_token",
   "refreshToken": "new_refresh_token",
-  "expiresIn": "3600" // segundos
+  "expiresIn": "3600"
 }
 ```
 
 ***Criação de Gênero:***  
-Adiciona um novo gênero de filme ao banco de dados.
+Adiciona um novo gênero de filme ao banco de dados.      
 ****É necessário o idToken do usuário logado.****     
 __Rota:__ `/genre?idToken=[IDTOKEN]`  
 __Método:__ POST  
@@ -198,7 +198,7 @@ __Resposta exemplo:__
 ```
 
 ***Obter Gênero:***  
-Obtém informações de um gênero de filme específico.    
+Obtém informações de um gênero de filme específico.      
 ****É necessário o idToken do usuário logado.****   
 __Rota:__ `/genre/[IDGENRE]?idToken=[IDTOKEN]`  
 __Método:__ GET  
@@ -223,8 +223,7 @@ __Resposta exemplo:__
 {
   [
     { "id": 1, "name": "Action" },
-    { "id": 2, "name": "Comedy" },
-  // ...
+    { "id": 2, "name": "Comedy" }
   ]
 }
 ```
@@ -259,7 +258,7 @@ Remove o gênero de filme do banco de dados.
 ****É necessário o idToken do usuário logado.****    
 __Rota:__ `/genre/[IDGENRE]?idToken=[IDTOKEN]`  
 __Método:__ DELETE  
-__Requisição:__ NoBody (Só e necessário o parâmetro de rota.)
+__Requisição:__ NoBody (Só e necessário o parâmetro de rota.)    
 __Resposta exemplo:__  `(204) No Content`
 
 **Note**:  
