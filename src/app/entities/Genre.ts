@@ -1,7 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 
 export interface IGenreEssential {
-    readonly name : string
+    readonly name: string
 }
 
 @Entity()

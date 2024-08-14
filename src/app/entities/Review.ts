@@ -3,10 +3,10 @@ import Movie from './Movie';
 import User from './User';
 
 export interface IReviewEssential {
-    readonly user : User,
-    readonly movie : Movie,
-    readonly rating : string,
-    readonly comment : string
+    readonly user: User,
+    readonly movie: Movie,
+    readonly rating: string,
+    readonly comment: string
 }
 
 @Entity()
@@ -15,11 +15,11 @@ export default class Review {
     review_id!: number;
 
     @ManyToOne(() => User)
-    @JoinColumn({name:"user_uid"})
+    @JoinColumn({ name: "user_uid" })
     user!: User;
 
     @ManyToOne(() => Movie)
-    @JoinColumn({name:"movie_id"})
+    @JoinColumn({ name: "movie_id" })
     movie!: Movie;
 
     @Column()

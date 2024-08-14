@@ -5,17 +5,17 @@ import IGenreRepository from "../../repositories/IGenreRepository"
 
 export default class CreateGenreService {
     constructor(
-        private repository : IGenreRepository
-    ){ }
+        private repository: IGenreRepository
+    ) { }
 
-    async execute(data :IGenreEssential) : Promise<Result<Genre>> {
+    async execute(data: IGenreEssential): Promise<Result<Genre>> {
         try {
             const genre = new Genre()
             genre.name = data.name
             return await this.repository.createNewGenre(genre)
         } catch (error) {
             const err = error as Error
-            return Result.fail(ServerError.generic(`Create:${err.message}` ,`CreateGenreService: execute(${data})`))
+            return Result.fail(ServerError.generic(`Create:${err.message}`, `CreateGenreService: execute(${data})`))
         }
     }
 }

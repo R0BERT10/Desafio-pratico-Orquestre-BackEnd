@@ -10,5 +10,5 @@ const post = (bodyData: any) => {
 }
 
 export const options = {
-    POST:post
+    POST: post
 }

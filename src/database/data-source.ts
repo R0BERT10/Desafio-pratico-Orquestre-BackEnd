@@ -19,11 +19,11 @@ export const AppDataSource = new DataSource({
   database: process.env.POSTGRES_DATABASE,
   synchronize: true,
   logging: false,
-  entities: [ User, Genre, Movie, Review ],
-  migrations: [ 
+  entities: [User, Genre, Movie, Review],
+  migrations: [
     CreateUserTable1723165293956,
-    CreateGenreTable1723557451769, 
-    CreateMovieTable1723557464411, 
+    CreateGenreTable1723557451769,
+    CreateMovieTable1723557464411,
     CreateReviewTable1723558523401
   ],
   subscribers: [],

@@ -14,8 +14,8 @@ export const firebase = admin.apps.length
 
 const apiKey = process.env.FIREBASE_API_KEY
 export const firebaseLinks = {
-    signInWithPassword:`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${apiKey}`,
-    signUp:`https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${apiKey}`,
-    update:`https://identitytoolkit.googleapis.com/v1/accounts:update?key=${apiKey}`,
-    refreshToken:`https://securetoken.googleapis.com/v1/token?key=${apiKey}`
+    signInWithPassword: `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${apiKey}`,
+    signUp: `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${apiKey}`,
+    update: `https://identitytoolkit.googleapis.com/v1/accounts:update?key=${apiKey}`,
+    refreshToken: `https://securetoken.googleapis.com/v1/token?key=${apiKey}`
 }

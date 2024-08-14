@@ -5,21 +5,21 @@ import IGenreRepository from "../../repositories/IGenreRepository"
 
 export default class GetGenreService {
     constructor(
-        private repository : IGenreRepository
-    ){ }
+        private repository: IGenreRepository
+    ) { }
 
-    async execute(idOrName:string|number) : Promise<Result<Genre>> {
+    async execute(idOrName: string | number): Promise<Result<Genre>> {
         try {
-            let genre : Genre
-            if (typeof(idOrName) == "number"){
-                const result = await this.repository.findByGenreAttributes({ id:idOrName })
-                if (result.isFailure){
+            let genre: Genre
+            if (typeof (idOrName) == "number") {
+                const result = await this.repository.findByGenreAttributes({ id: idOrName })
+                if (result.isFailure) {
                     return Result.fail(result.getError())
                 }
                 genre = result.getValue()
-            } else if (typeof(idOrName) == "string"){
-                const result = await this.repository.findByGenreAttributes({ name:idOrName })
-                if (result.isFailure){
+            } else if (typeof (idOrName) == "string") {
+                const result = await this.repository.findByGenreAttributes({ name: idOrName })
+                if (result.isFailure) {
                     return Result.fail(result.getError())
                 }
                 genre = result.getValue()
@@ -29,7 +29,7 @@ export default class GetGenreService {
             return Result.ok(genre)
         } catch (error) {
             const err = error as Error
-            return Result.fail(ServerError.generic(`GetError:${err.message}` ,`GetGenreService: execute(${idOrName})`))
+            return Result.fail(ServerError.generic(`GetError:${err.message}`, `GetGenreService: execute(${idOrName})`))
         }
     }
 }

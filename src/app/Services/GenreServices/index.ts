@@ -5,11 +5,11 @@ import DeleteGenreService from "./DeleteGenre";
 import IGenreRepository from "../../repositories/IGenreRepository";
 import GenreRepositoryPostgres from "../../repositories/implementations/GenreRepositoryPostgres";
 
-const repository : IGenreRepository = new GenreRepositoryPostgres()
+const repository: IGenreRepository = new GenreRepositoryPostgres()
 
 export const GenreServices = {
-    create : new CreateGenreService(repository), 
-    read : new GetGenreService(repository), 
-    update : new UpdateGenreService(repository),
-    delete : new DeleteGenreService(repository), 
+    create: new CreateGenreService(repository),
+    read: new GetGenreService(repository),
+    update: new UpdateGenreService(repository),
+    delete: new DeleteGenreService(repository),
 }

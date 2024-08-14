@@ -9,13 +9,13 @@ import SignInUserAccount from "./SignInUserAccount";
 import UpdateUserAccount from "./UpdateUserAccount";
 import RefreshTokenAccount from "./RefreshTokenAccount";
 
-const repository : IUserRepository = new UserRepositoryPostgres()
-const authProvider : IAuthProvider = new AuthProviderFirebase()
+const repository: IUserRepository = new UserRepositoryPostgres()
+const authProvider: IAuthProvider = new AuthProviderFirebase()
 
 export const UserAccountServices = {
-    createAccount : new CreateUserAccount(repository, authProvider), 
-    deleteAccount : new DeleteUserAccount(repository, authProvider), 
-    singInAccount : new SignInUserAccount(repository, authProvider), 
-    updateAccount : new UpdateUserAccount(repository, authProvider),
-    refreshTokenAccount : new RefreshTokenAccount(authProvider)
+    createAccount: new CreateUserAccount(repository, authProvider),
+    deleteAccount: new DeleteUserAccount(repository, authProvider),
+    singInAccount: new SignInUserAccount(repository, authProvider),
+    updateAccount: new UpdateUserAccount(repository, authProvider),
+    refreshTokenAccount: new RefreshTokenAccount(authProvider)
 }

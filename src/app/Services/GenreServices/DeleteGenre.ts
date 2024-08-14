@@ -4,15 +4,15 @@ import IGenreRepository from "../../repositories/IGenreRepository"
 
 export default class DeleteGenreService {
     constructor(
-        private repository : IGenreRepository
-    ){ }
+        private repository: IGenreRepository
+    ) { }
 
-    async execute(id:number) : Promise<Result<boolean>> {
+    async execute(id: number): Promise<Result<boolean>> {
         try {
             return await this.repository.delete(id)
         } catch (error) {
             const err = error as Error
-            return Result.fail(ServerError.generic(`deleteError:${err.message}` ,`DeleteGenreService: execute(${id})`))
+            return Result.fail(ServerError.generic(`deleteError:${err.message}`, `DeleteGenreService: execute(${id})`))
         }
     }
 }

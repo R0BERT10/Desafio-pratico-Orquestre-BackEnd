@@ -6,11 +6,11 @@ import UpdateGenreController from "./UpdateGenreController";
 
 const genreServices = GenreServices
 
-export default function GenreControllers(){
+export default function GenreControllers() {
     return {
-        Get : new GetGenreController(genreServices.read),
+        Get: new GetGenreController(genreServices.read),
         Post: new CreateGenreController(genreServices.create),
-        Put : new UpdateGenreController(genreServices.update),
+        Put: new UpdateGenreController(genreServices.update),
         Delete: new DeleteGenreController(genreServices.delete),
     }
 }

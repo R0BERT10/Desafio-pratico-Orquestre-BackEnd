@@ -9,7 +9,7 @@ export default class GenreRepositoryPostgres implements IGenreRepository {
     private repository = AppDataSource.getRepository(Genre)
 
     async createNewGenre(genre: Genre): Promise<Result<Genre>> {
-        if (await this.repository.findOneBy({name:genre.name})){
+        if (await this.repository.findOneBy({ name: genre.name })) {
             return Result.fail(ClientError.CONFLICT("Genre already exists in the database", `GenreRepositoryPostgres: createNewGenre(${genre})`))
         }
         genre.name = genre.name.toLowerCase()
@@ -28,20 +28,20 @@ export default class GenreRepositoryPostgres implements IGenreRepository {
     async updateGenre(id: number, genreEssential: IGenreEssential): Promise<Result<Genre>> {
         const genre = await this.repository.findOneBy({ id })
 
-        if (!genre){
+        if (!genre) {
             return Result.fail(ClientError.NOT_FOUND(`GenrePostgresRepository: updateGenre(${id})`))
         }
-        
+
         genre.name = genreEssential.name.toLowerCase() || genre.name
 
         const updatedGenre = await this.repository.save(genre)
         return Result.ok(updatedGenre)
     }
     async delete(id: number): Promise<Result<boolean>> {
-        if (!(await this.repository.findOneBy({ id }))){
+        if (!(await this.repository.findOneBy({ id }))) {
             return Result.fail(ClientError.NOT_FOUND((`GenrePostgresRepository: delete(${id})`)))
         }
-        const result = await this.repository.delete({id})
+        const result = await this.repository.delete({ id })
         const boolResult = result.affected == null || (result.affected !== undefined && result.affected > 0)
         return Result.ok(boolResult)
     }
