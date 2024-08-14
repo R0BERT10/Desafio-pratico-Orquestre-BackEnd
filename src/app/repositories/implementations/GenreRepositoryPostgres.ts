@@ -1,11 +1,12 @@
 import { AppDataSource } from "../../../database/data-source";
 import { FindOptionsWhere } from "../../../util/@Type.FindOptionsWhere";
 import { Result } from "../../../util/ResultClassHandle";
-import { ClientError } from "../../../util/ResultErrors";
+import { ClientError, ServerError } from "../../../util/ResultErrors";
 import Genre, { IGenreEssential } from "../../entities/Genre";
 import IGenreRepository from "../IGenreRepository";
 
 export default class GenreRepositoryPostgres implements IGenreRepository {
+    
     private repository = AppDataSource.getRepository(Genre)
 
     async createNewGenre(genre: Genre): Promise<Result<Genre>> {
@@ -18,6 +19,14 @@ export default class GenreRepositoryPostgres implements IGenreRepository {
         return Result.ok(result)
 
     }
+    async getAllGenres(): Promise<Result<Genre[]>> {
+        try {
+            return Result.ok(await this.repository.find())
+        } catch (error) {
+            return Result.fail(ServerError.INTERNAL_ERROR(`GenreRepositoryPostgres: getAllGenres()`))
+        }
+    }
+
     async findByGenreAttributes(genreAttributes: FindOptionsWhere<Genre>): Promise<Result<Genre>> {
         const genre = await this.repository.findOneBy(genreAttributes)
         if (genre == null) {
