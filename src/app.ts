@@ -11,8 +11,10 @@ app.use(cors())
 app.use(express.json())
 app.use(routes)
 
-AppDataSource.initialize().then(async () => {
-    console.log("Database OK")
-})
+if (AppDataSource.isInitialized === false){
+    AppDataSource.initialize().then(async () => {
+        console.log("Database OK")
+    })
+} else { console.warn("Database já inicializado.") }
 
 export default app

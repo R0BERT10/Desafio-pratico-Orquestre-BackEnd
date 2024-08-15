@@ -38,6 +38,7 @@ export class ServerError implements ResultError {
         public httpCodeResponse: number,
         public messageResponse: string,
         public functionOriginError: string) {
+        console.error(this.messageResponse, this.functionOriginError)
     }
 
     toString() {
