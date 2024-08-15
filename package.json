@@ -6,7 +6,8 @@
     "start": "ts-node src/server.ts",
     "dev": "ts-node-dev --transpile-only src/server.ts",
     "typeorm": "typeorm-ts-node-commonjs",
-    "migration:run": "typeorm-ts-node-commonjs migration:run -d src/database/data-source.ts"
+    "migration:run": "typeorm-ts-node-commonjs migration:run -d src/database/data-source.ts",
+    "vercel-build": "echo hello"
   },
   "dependencies": {
     "cors": "^2.8.5",

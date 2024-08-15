@@ -14,7 +14,6 @@
     /* Emit */
     "outDir": "build",                                   /* Specify an output folder for all emitted files. */
     "removeComments": true,                              /* Disable emitting comments. */
-    "rootDir": "src",
     "esModuleInterop": true,                             /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */
     "forceConsistentCasingInFileNames": true,            /* Ensure that casing is correct in imports. */
     "allowSyntheticDefaultImports": true,
@@ -23,5 +22,10 @@
     "noImplicitAny": true,                            /* Enable error reporting for expressions and declarations with an implied 'any' type. */
     "strictNullChecks": true,                         /* When type checking, take into account 'null' and 'undefined'. */
     "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
-  }
+  },
+  "include": [
+    "./*.js",
+    "./api/*.ts",
+    "src/**/*.ts"
+  ]
 }
