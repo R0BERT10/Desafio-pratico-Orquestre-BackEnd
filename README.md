@@ -34,7 +34,7 @@ yarn start
 Use o código com cuidado.
 ```
 
-**Endpoints:**
+### Endpoints: ###
 
 ***Cadastro de Usuário:***  
 Cadastra um novo usuário no banco de dados.  
@@ -263,3 +263,50 @@ __Resposta exemplo:__  `(204) No Content`
 
 **Note**:  
 •	Substitua [IDGENRE] e [IDTOKEN] pelos valores reais.  
+
+
+### Estrutura da aplicação: ###
+
+Seguindo os princípios do SOLID, todas as funções, métodos e classes foram separadas por categoria, abstraindo-as para que cada uma tenha apenas uma responsabilidade.
+
+Essa organização permite rápidas alterações de banco de dados e provedores sem quebrar a aplicação, além de possibilitar a adição de novas rotas e funcionalidades sem afetar o restante da aplicação.
+
+Atualmente, estamos utilizando o PostgreSQL como banco de dados relacional, mas ele pode ser trocado a qualquer momento por outro banco relacional (como MySQL) ou não relacional (como MongoDB), ou até mesmo usar mais de um banco de dados, bastando implementar as interfaces de repositório. Também estamos usando o Firebase Authentication como provedor de serviços de autenticação, que pode ser substituído pelo JWT, por exemplo, desde que siga o contrato de implementação dos métodos da interface vigente.
+
+* __Controllers__: Responsáveis por receber e tratar os dados da requisição e retornar a resposta para o requisitante.   
+
+  __Fluxo:__ 
+  ```
+    Recebe a requisição => trata os dados => chama a função de ‘services’ adequada => envia a resposta para o usuário.
+  ```
+
+* __Entities__: Classes de dados das entidades da aplicação.
+Repositories: Administram os repositórios da aplicação.
+
+  __Obs.__: Os repositórios devem seguir a implementação das interfaces.
+
+* __Routes__: Rotas e endpoints da aplicação.
+
+  __Fluxo__: 
+  ```
+  Gera o endpoint => chama o ‘Controller’ adequado.
+  ```
+
+* __Services__: Casos de uso da aplicação. Responsáveis pela lógica da aplicação.
+
+  __Fluxo__: 
+  ```
+  Recebe a chamada => se comunica com a instância do repositório e o provedor, se necessário => realiza a lógica do caso de uso => retorna os dados para o chamante.
+  ```
+
+* __Providers__: Gerenciam os provedores externos necessários para a aplicação.
+
+  __Obs__: Os provedores devem seguir as implementações das interfaces.
+
+### Contribuições: ###
+Contribuições são bem-vindas!  
+Para contribuir, por favor, siga estes passos:
+1.	Fork este repositório
+2.	Crie um novo branch
+3.	Faça suas alterações
+4.	Envie um pull request
