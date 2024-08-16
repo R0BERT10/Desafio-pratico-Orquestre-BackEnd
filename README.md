@@ -280,8 +280,9 @@ Atualmente, estamos utilizando o PostgreSQL como banco de dados relacional, mas 
     Recebe a requisição => trata os dados => chama a função de ‘services’ adequada => envia a resposta para o usuário.
   ```
 
-* __Entities__: Classes de dados das entidades da aplicação.
-Repositories: Administram os repositórios da aplicação.
+* __Entities__: Classes de dados das entidades da aplicação.   
+
+* __Repositories__: Administram os repositórios da aplicação.
 
   __Obs.__: Os repositórios devem seguir a implementação das interfaces.
 
