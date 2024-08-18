@@ -9,10 +9,10 @@ import routes from "./app/routes";
 const app = express()
 app.use(cors())
 app.use(express.json())
-app.use(routes)
 
 if (AppDataSource.isInitialized === false){
     AppDataSource.initialize().then(async () => {
+        app.use(routes)
         console.log("Database OK")
     })
 } else { console.warn("Database já inicializado.") }
