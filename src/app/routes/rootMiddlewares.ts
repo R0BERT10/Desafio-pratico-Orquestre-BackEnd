@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from "express";
+import { AppDataSource } from "../../database/data-source";
 
 export const handleServerErrors = (err: Error, req: Request, res: Response, next: NextFunction) => {
     if (err) {
@@ -16,7 +17,13 @@ export const handleServerErrors = (err: Error, req: Request, res: Response, next
             return res.status(500).json('Unexpected server error.')
         }
     }
-    return next()
+    if (AppDataSource.isInitialized) {
+        return next()
+    }
+    AppDataSource.initialize().then(async () => {
+        console.log("Database OK")
+        return next()
+    })
 }
 
 export const extractColonFromUrlMiddleware = (req: Request, res: Response, next: NextFunction) => {
