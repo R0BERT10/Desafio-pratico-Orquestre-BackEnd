@@ -1,4 +1,3 @@
-import { refreshToken } from "firebase-admin/app";
 import IAuthProvider from "../../../providers/IAuthProvider";
 import AuthProviderFirebase from "../../../providers/implementation/AuthProviderFirebase";
 import UserRepositoryPostgres from "../../repositories/implementations/UserRepositoryPostgres";

@@ -1,6 +1,8 @@
 import { NextFunction, Request, Response } from "express";
+import { AppDataSource } from "../../database/data-source";
 
 export const handleServerErrors = (err: Error, req: Request, res: Response, next: NextFunction) => {
+    console.log("onHandleServerErrors middleware")
     if (err) {
         if (err instanceof SyntaxError) {
             console.log(err.message)
@@ -20,9 +22,23 @@ export const handleServerErrors = (err: Error, req: Request, res: Response, next
 }
 
 export const extractColonFromUrlMiddleware = (req: Request, res: Response, next: NextFunction) => {
+    console.log("onExtractColonFromUrlMiddleware")
     if (req.url.includes(':')) {
         const parts = req.url.split(':');
         req.url = parts[0] + "/internal" + parts[1];
     }
     return next();
+}
+
+export const checkDbInit = async (req: Request, res: Response, next: NextFunction) => {
+    console.log("onCheckDbInit middleware")
+    try {
+        if (AppDataSource.isInitialized === false){
+            await AppDataSource.initialize()
+            console.log("Database OK")
+        }
+        next();
+    } catch (error) {
+        next(error);
+    }
 }

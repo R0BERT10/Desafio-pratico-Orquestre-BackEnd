@@ -7,7 +7,6 @@ import routes from "./app/routes";
 
 if (AppDataSource.isInitialized === false){
     AppDataSource.initialize().then(async () => {
-        app.use(routes)
         console.log("Database OK")
     })
 } else { console.warn("Database já inicializado.") }
